@@ -9,34 +9,30 @@
     public int search(int[] A, int target){
         int start = 0 ;
         int end = A.length -1;
-
-        while(start < end){
-            int mid = start + (end-start)/2;
-            if(target == A[mid]){
-                return mid;
-            }
-            if( target == A[start]){
+        while( start <= end ){
+            int mid = start + (end - start)/2;
+            if (target == A[start]){
                 return start;
             }
-            if(A[mid] < A[start]){
+            if ( target == A[mid] ){
+                return mid;
+            }
+            if( A[mid] < A[start]){
                 if( target > A[start] || target < A[mid]){
-                    end = mid;
-                }else if( target < A[start] &&  target > A[mid]){
-                    start = mid + 1;
+                    end = mid -1;
+                }
+                else{
+                    start = mid +1;
                 }
             }
-            else {
-                if( target > A[mid] || target < A[start] ){
-                    start = mid;
+            else{
+                if ( target > A[mid] || target < A[start]){
+                    start = mid +1;
                 }
-                else if( target < A[mid] && target > A[start]){
-                    end = mid-1;
+                else{
+                    end = mid -1;
                 }
             }
         }
-        if( A[start] == target){
-            return start;
-        }
-        return -1;
     }
  }
